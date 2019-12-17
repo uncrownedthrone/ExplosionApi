@@ -1,5 +1,6 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace ExplosionApi.Controllers
 {
@@ -7,10 +8,10 @@ namespace ExplosionApi.Controllers
   [Route("api/[controller]")]
   public class ExplosionController : ControllerBase
   {
-    [HttpGet]
-    public ActionResult GetExplosion()
+    [HttpGet("{number}")]
+    public ActionResult<string> GetExplosion(string s)
     {
-      return Ok(new { Explosion = DateTime.Now });
+      return string.Join("", s.Select(i => new String(i, int.Parse(i.ToString()))));
     }
   }
 }
