@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace ExplosionApi.Controllers
 {
@@ -7,11 +8,10 @@ namespace ExplosionApi.Controllers
   [Route("api/[controller]")]
   public class MumblingController : ControllerBase
   {
-    [HttpGet]
-    public ActionResult GetMumbling()
+    [HttpGet("letter")]
+    public ActionResult<string> GetMumblin(string s)
     {
-      var kataQuestion = new List<string>() { };
-      return Ok(new { });
+      return string.Join("-", s.Select((n, i) => char.ToUpper(n) + new string(char.ToLower(n), i)));
     }
   }
 }
